@@ -21,11 +21,12 @@ export const addOrUpdateItem = async (itemName, quantity, pantry) => {
     const trimmedItemName = itemName.trim().toLowerCase();
 
     if (trimmedItemName === "") {
-      alert("Please enter an item name.");
-      return;
+      throw new Error("Item name cannot be empty.");
     }
 
-    const existingItem = pantry.find(item => item.name.toLowerCase() === trimmedItemName);
+    const existingItem = pantry.find(item => 
+      item.name && item.name.toLowerCase() === trimmedItemName
+    );
 
     if (existingItem) {
       const newQuantity = existingItem.quantity + quantity;
@@ -36,9 +37,11 @@ export const addOrUpdateItem = async (itemName, quantity, pantry) => {
     }
   } catch (error) {
     console.error("Error adding or updating the item: ", error);
-    throw new Error("Failed to add or update item");
+    throw new Error("Failed to add or update item: " + error.message);
   }
 };
+
+
 
 export const removeItem = async (id) => {
   try {

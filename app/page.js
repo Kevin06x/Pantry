@@ -102,7 +102,7 @@ export default function Home() {
   }, []);
 
   const filteredPantry = pantry.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    item.name && item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleSearch = (e) => {
@@ -133,7 +133,7 @@ export default function Home() {
       justifyContent={"flex-start"}
       alignItems={"center"}
       sx={{
-        backgroundImage: "url(/wall.png)",
+        backgroundImage: "url(/background2.jpg)",
         backgroundSize: 20,
         overflow: "hidden", // Prevents scrolling the whole page
       }}
@@ -216,7 +216,7 @@ export default function Home() {
         alignItems={"center"}
         justifyContent={"center"}
         sx={{
-          backgroundImage: "url(/box.png)",
+          backgroundImage: "url(/background.jpg)",
           backgroundSize: 20,
           borderRadius: 2,
           position: "sticky",
@@ -231,7 +231,7 @@ export default function Home() {
           textAlign={"center"}
           sx={{ fontFamily: "Serif", padding: "16px 0" }}
         >
-          PANTRY ITEMS
+          PANTRY
         </Typography>
         </Box>
         <Box
@@ -244,7 +244,7 @@ export default function Home() {
           width={"800px"}
         >
           <TextField
-            label="Search Pantry"
+            label="Search"
             variant="outlined"
             value={searchTerm}
             onChange={handleSearch}
@@ -266,7 +266,7 @@ export default function Home() {
       {/* Scrollable Item List */}
       <Box
         sx={{
-          backgroundImage: "url(/box.png)",
+          backgroundImage: "url(/background.jpg)",
           borderRadius: 2,
           backgroundSize: 20,
           width: "800px",
@@ -289,7 +289,7 @@ export default function Home() {
                 bgcolor: "transparent",
                 px: 2,
                 borderBottom: "10px solid lightgrey",
-                fontFamily: '"Brush Script MT", cursive',
+                fontFamily: "Space Mono"
               }}
             >
               <Typography variant={"h4"} color={"black"} textAlign={"center"}>
